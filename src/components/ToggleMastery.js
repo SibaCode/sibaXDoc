@@ -1,46 +1,64 @@
 // src/components/ToggleMastery.js
-import React, { useState , useEffect } from 'react';
+import React, { useState } from 'react';
 import './ToggleMastery.css';
 
-const ToggleMastery = ({ initialTab = 'skeleton' }) => {  // Add initialTab prop
+const ToggleMastery = ({ initialTab = 'skeleton' }) => {
   const [activeTab, setActiveTab] = useState(initialTab);
   const [currentExample, setCurrentExample] = useState(0);
 
-  // Interactive examples - users can see them working
+  // Interactive states for all examples
   const [isOn, setIsOn] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  useEffect(() => {
-    if (initialTab) {
-      setActiveTab(initialTab);
-    }
-  }, [initialTab]);
-  const examples = [
+  const [isOpen, setIsOpen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isRead, setIsRead] = useState(false);
+
+  const toggleExamples = [
     {
       title: "Universal Toggle Skeleton",
-      description: "The foundation for ALL toggle patterns",
-      code: `function ToggleSkeleton() {
+      description: "The foundation for ALL toggle patterns - copy this every time!",
+      code: `import React, { useState } from 'react';
+
+function ToggleSkeleton() {
+  // 🎯 STEP 1: CHOOSE YOUR STATE NAME
   const [isOn, setIsOn] = useState(false);
+  // 💡 Change "isOn" to match your problem:
+  // isVisible, isDark, showMessage, isOpen, isActive, etc.
+
+  // 🎯 STEP 2: BUTTON TEXT (Change these)
   const buttonText = isOn ? 'TURN OFF' : 'TURN ON';
+  const statusText = isOn ? 'ON' : 'OFF';
+  
+  // 🎯 STEP 3: CONTENT TO SHOW/HIDE (Change this)
   const contentToShow = isOn ? <p>Content is visible!</p> : null;
 
   return (
     <div>
+      {/* 🎯 BUTTON - Don't change this structure */}
       <button onClick={() => setIsOn(!isOn)}>
         {buttonText}
       </button>
+      
+      {/* 🎯 STATUS TEXT - Optional */}
+      <p>Status: {statusText}</p>
+      
+      {/* 🎯 CONDITIONAL CONTENT - Change what shows */}
       {contentToShow}
     </div>
   );
-}`,
+}
+
+export default ToggleSkeleton;`,
       liveDemo: (
         <div className="live-demo">
           <button onClick={() => setIsOn(!isOn)} className="demo-btn">
             {isOn ? 'TURN OFF' : 'TURN ON'}
           </button>
+          <p>Status: {isOn ? 'ON' : 'OFF'}</p>
           {isOn && <p className="demo-content">🎉 Content is visible!</p>}
         </div>
       )
@@ -50,6 +68,7 @@ const ToggleMastery = ({ initialTab = 'skeleton' }) => {  // Add initialTab prop
       description: "Basic content visibility toggle",
       code: `function ShowHideMessage() {
   const [isVisible, setIsVisible] = useState(false);
+  
   const buttonText = isVisible ? 'HIDE MESSAGE' : 'SHOW MESSAGE';
   const contentToShow = isVisible ? <p>🎉 Secret message! 🎉</p> : null;
 
@@ -73,30 +92,33 @@ const ToggleMastery = ({ initialTab = 'skeleton' }) => {  // Add initialTab prop
     },
     {
       title: "Dark/Light Mode",
-      description: "Theme switching with styles",
+      description: "Theme switching with dynamic styles",
       code: `function DarkLightMode() {
   const [isDark, setIsDark] = useState(false);
+  
   const buttonText = isDark ? '☀️ LIGHT MODE' : '🌙 DARK MODE';
+  const contentToShow = <p>Current mode: {isDark ? 'Dark' : 'Light'}</p>;
 
   return (
     <div style={{
-      background: isDark ? '#333' : '#fff',
+      background: isDark ? '#1a1a1a' : '#ffffff',
       color: isDark ? 'white' : 'black',
       padding: '20px'
     }}>
       <button onClick={() => setIsDark(!isDark)}>
         {buttonText}
       </button>
-      <p>Current mode: {isDark ? 'Dark' : 'Light'}</p>
+      {contentToShow}
     </div>
   );
 }`,
       liveDemo: (
         <div className="live-demo" style={{
-          background: isDark ? '#333' : '#fff',
+          background: isDark ? '#1a1a1a' : '#ffffff',
           color: isDark ? 'white' : 'black',
           padding: '20px',
-          borderRadius: '8px'
+          borderRadius: '8px',
+          transition: 'all 0.3s ease'
         }}>
           <button onClick={() => setIsDark(!isDark)} className="demo-btn">
             {isDark ? '☀️ LIGHT MODE' : '🌙 DARK MODE'}
@@ -110,6 +132,7 @@ const ToggleMastery = ({ initialTab = 'skeleton' }) => {  // Add initialTab prop
       description: "Show detailed content on demand",
       code: `function ExpandableSection() {
   const [isExpanded, setIsExpanded] = useState(false);
+  
   const buttonText = isExpanded ? '▼ COLLAPSE' : '► EXPAND';
   const contentToShow = isExpanded ? (
     <div>
@@ -136,7 +159,7 @@ const ToggleMastery = ({ initialTab = 'skeleton' }) => {  // Add initialTab prop
             <div className="demo-content">
               <p>📚 Detailed content here...</p>
               <p>🔍 More information shown when expanded</p>
-              <p>💡 This pattern is perfect for FAQs and details</p>
+              <p>💡 Perfect for FAQs and details sections</p>
             </div>
           )}
         </div>
@@ -144,9 +167,10 @@ const ToggleMastery = ({ initialTab = 'skeleton' }) => {  // Add initialTab prop
     },
     {
       title: "Favorite Button",
-      description: "Heart icon toggle with status",
+      description: "Heart icon toggle with status feedback",
       code: `function FavoriteButton() {
   const [isFavorited, setIsFavorited] = useState(false);
+  
   const buttonText = isFavorited ? '❤️ UNFAVORITE' : '🤍 FAVORITE';
   const contentToShow = <p>{isFavorited ? 'Added to favorites!' : 'Not in favorites'}</p>;
 
@@ -169,18 +193,22 @@ const ToggleMastery = ({ initialTab = 'skeleton' }) => {  // Add initialTab prop
       )
     },
     {
-      title: "Password Visibility",
-      description: "Toggle input type between text/password",
+      title: "Password Visibility Toggle",
+      description: "Toggle input type between text and password",
       code: `function PasswordToggle() {
   const [showPassword, setShowPassword] = useState(false);
-  const buttonText = showPassword ? '🔒 HIDE' : '👁️ SHOW';
   
+  const buttonText = showPassword ? '🔒 HIDE PASSWORD' : '👁️ SHOW PASSWORD';
+  const contentToShow = (
+    <input 
+      type={showPassword ? 'text' : 'password'} 
+      placeholder="Enter password"
+    />
+  );
+
   return (
     <div>
-      <input 
-        type={showPassword ? 'text' : 'password'} 
-        placeholder="Enter password"
-      />
+      {contentToShow}
       <button onClick={() => setShowPassword(!showPassword)}>
         {buttonText}
       </button>
@@ -195,99 +223,198 @@ const ToggleMastery = ({ initialTab = 'skeleton' }) => {  // Add initialTab prop
             className="demo-input"
           />
           <button onClick={() => setShowPassword(!showPassword)} className="demo-btn">
-            {showPassword ? '🔒 HIDE' : '👁️ SHOW'}
+            {showPassword ? '🔒 HIDE PASSWORD' : '👁️ SHOW PASSWORD'}
           </button>
+        </div>
+      )
+    },
+    {
+      title: "Menu Open/Close",
+      description: "Navigation menu toggle",
+      code: `function MenuToggle() {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  const buttonText = isOpen ? '✕ CLOSE MENU' : '☰ OPEN MENU';
+  const contentToShow = isOpen ? (
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  ) : null;
+
+  return (
+    <div>
+      <button onClick={() => setIsOpen(!isOpen)}>
+        {buttonText}
+      </button>
+      {contentToShow}
+    </div>
+  );
+}`,
+      liveDemo: (
+        <div className="live-demo">
+          <button onClick={() => setIsOpen(!isOpen)} className="demo-btn">
+            {isOpen ? '✕ CLOSE MENU' : '☰ OPEN MENU'}
+          </button>
+          {isOpen && (
+            <nav className="demo-nav">
+              <ul className="demo-list">
+                <li><a href="#home">🏠 Home</a></li>
+                <li><a href="#about">👤 About</a></li>
+                <li><a href="#contact">📞 Contact</a></li>
+              </ul>
+            </nav>
+          )}
+        </div>
+      )
+    },
+    {
+      title: "Play/Pause Button",
+      description: "Media player control toggle",
+      code: `function PlayPauseToggle() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  
+  const buttonText = isPlaying ? '⏸️ PAUSE' : '▶️ PLAY';
+  const contentToShow = <p>Status: {isPlaying ? 'Playing...' : 'Paused'}</p>;
+
+  return (
+    <div>
+      <button onClick={() => setIsPlaying(!isPlaying)}>
+        {buttonText}
+      </button>
+      {contentToShow}
+    </div>
+  );
+}`,
+      liveDemo: (
+        <div className="live-demo">
+          <button onClick={() => setIsPlaying(!isPlaying)} className="demo-btn">
+            {isPlaying ? '⏸️ PAUSE' : '▶️ PLAY'}
+          </button>
+          <p className="demo-content">Status: {isPlaying ? '🎵 Playing...' : '⏸️ Paused'}</p>
+        </div>
+      )
+    },
+    {
+      title: "Read/Unread Notification",
+      description: "Notification status toggle",
+      code: `function NotificationToggle() {
+  const [isRead, setIsRead] = useState(false);
+  
+  const buttonText = isRead ? '● MARK UNREAD' : '○ MARK READ';
+  const contentToShow = <p>Notification: {isRead ? 'Read' : 'Unread'}</p>;
+
+  return (
+    <div>
+      <button onClick={() => setIsRead(!isRead)}>
+        {buttonText}
+      </button>
+      {contentToShow}
+    </div>
+  );
+}`,
+      liveDemo: (
+        <div className="live-demo">
+          <button onClick={() => setIsRead(!isRead)} className="demo-btn">
+            {isRead ? '● MARK UNREAD' : '○ MARK READ'}
+          </button>
+          <p className="demo-content">Notification: {isRead ? '✅ Read' : '🔴 Unread'}</p>
         </div>
       )
     }
   ];
 
-  const interviewProblems = [
+  const quickReference = [
+    { problem: "ON/OFF Toggle", stateName: "isOn", buttonText: "ON/OFF", content: "Status text" },
+    { problem: "Show/Hide Content", stateName: "isVisible", buttonText: "SHOW/HIDE", content: "Your content" },
+    { problem: "Dark/Light Mode", stateName: "isDark", buttonText: "DARK/LIGHT", content: "Mode indicator + styles" },
+    { problem: "Expand/Collapse", stateName: "isExpanded", buttonText: "EXPAND/COLLAPSE", content: "Detailed content" },
+    { problem: "Favorite Heart", stateName: "isFavorited", buttonText: "❤️/🤍", content: "Favorite status" },
+    { problem: "Play/Pause", stateName: "isPlaying", buttonText: "▶️/⏸️", content: "Player status" },
+    { problem: "Menu Open/Close", stateName: "isOpen", buttonText: "OPEN/CLOSE", content: "Navigation menu" },
+    { problem: "Read/Unread", stateName: "isRead", buttonText: "READ/UNREAD", content: "Notification status" },
+    { problem: "Password Visibility", stateName: "showPassword", buttonText: "SHOW/HIDE", content: "Input with type change" }
+  ];
+
+  const battlePlan = [
     {
-      problem: "ON/OFF Toggle",
-      stateName: "isOn",
-      buttonText: "ON/OFF",
-      content: "Status text"
+      step: "1",
+      title: "Identify Toggle Pattern",
+      description: '"Is this switching between two states?" → YES = TOGGLE'
     },
     {
-      problem: "Show/Hide Content", 
-      stateName: "isVisible",
-      buttonText: "SHOW/HIDE",
-      content: "Your content"
+      step: "2",
+      title: "Choose Your Variables",
+      description: "Pick state name: isVisible, isDark, isExpanded, isFavorited, etc."
     },
     {
-      problem: "Dark/Light Mode",
-      stateName: "isDark", 
-      buttonText: "DARK/LIGHT",
-      content: "Mode indicator + styles"
+      step: "3",
+      title: "Use the Skeleton",
+      description: "Copy universal toggle skeleton every time"
     },
     {
-      problem: "Expand/Collapse",
-      stateName: "isExpanded",
-      buttonText: "EXPAND/COLLAPSE", 
-      content: "Detailed content"
+      step: "4",
+      title: "Customize for Problem",
+      description: "Change ONLY: State name, Button text, Content to show"
     },
     {
-      problem: "Favorite Heart",
-      stateName: "isFavorited",
-      buttonText: "❤️/🤍",
-      content: "Favorite status"
-    },
-    {
-      problem: "Play/Pause",
-      stateName: "isPlaying", 
-      buttonText: "▶️/⏸️",
-      content: "Player controls"
-    },
-    {
-      problem: "Menu Open/Close",
-      stateName: "isOpen",
-      buttonText: "OPEN/CLOSE",
-      content: "Navigation menu"
-    },
-    {
-      problem: "Read/Unread",
-      stateName: "isRead",
-      buttonText: "READ/UNREAD",
-      content: "Notification dot"
+      step: "5",
+      title: "Add Styles (If Needed)",
+      description: "Dynamic styles, conditional rendering, input types"
     }
   ];
 
-  const commonGotchas = [
+  const commonErrors = [
     {
-      problem: "Button isn't working",
-      wrong: "<button onClick={handleClick}>",
-      right: "<button onClick={() => handleClick()}>"
+      error: "Button not working",
+      wrong: `<button onClick={handleClick}>`,
+      right: `<button onClick={() => handleClick()}>\n// OR define function properly\nfunction handleClick() { setIsOn(!isOn); }\n<button onClick={handleClick}>`
     },
     {
-      problem: "State isn't updating", 
-      wrong: "isOn = true;",
-      right: "setIsOn(true);"
+      error: "State not updating", 
+      wrong: `isOn = true;`,
+      right: `setIsOn(true);`
     },
     {
-      problem: "Content flashes then disappears",
-      wrong: "{if (isOn) { return <div>Content</div> }}",
-      right: "{isOn && <div>Content</div>}"
+      error: "Content not showing/hiding",
+      wrong: `{if (isOn) { return <div>Content</div> }}`,
+      right: `{isOn && <div>Content</div>}\n// OR\n{isOn ? <div>Content</div> : null}`
     }
+  ];
+
+  const proTips = [
+    "Start with the skeleton - Copy and paste every time",
+    "Change only 3 things - State name, button text, content",
+    "Keep returns clean - Put logic above return statement", 
+    "Use descriptive names - isModalOpen vs isOpen",
+    "Test both states - Make sure ON and OFF work correctly"
+  ];
+
+  const checklist = [
+    "State variable declared with useState(false)",
+    "Button toggles the state with setIsThing(!isThing)",
+    "Button text changes based on state ({isThing ? 'ON' : 'OFF'})",
+    "Conditional content shows/hides correctly",
+    "No console errors",
+    "Both states (ON/OFF) work properly"
   ];
 
   const nextExample = () => {
-    setCurrentExample(prev => 
-      prev < examples.length - 1 ? prev + 1 : 0
-    );
+    setCurrentExample(prev => prev < toggleExamples.length - 1 ? prev + 1 : 0);
   };
 
   const prevExample = () => {
-    setCurrentExample(prev => 
-      prev > 0 ? prev - 1 : examples.length - 1
-    );
+    setCurrentExample(prev => prev > 0 ? prev - 1 : toggleExamples.length - 1);
   };
 
   return (
     <div className="toggle-mastery-container">
       <header className="mastery-header">
-        <h1>🚀 REACT TOGGLE PATTERN MASTERY KIT</h1>
-        <p>Master the universal toggle pattern - solve ANY on/off problem in React</p>
+        <h1>🚀 TOGGLE PATTERN MASTERY KIT</h1>
+        <p>Master 8+ toggle variations from one universal skeleton!</p>
       </header>
 
       <div className="mastery-content">
@@ -295,33 +422,33 @@ const ToggleMastery = ({ initialTab = 'skeleton' }) => {  // Add initialTab prop
         <div className="mastery-tabs">
           <button 
             className={`tab ${activeTab === 'skeleton' ? 'active' : ''}`}
-            onClick={() => setActiveTab('skeleton')}
+            onClick={() => { setActiveTab('skeleton'); setCurrentExample(0); }}
           >
             🏗️ Universal Skeleton
           </button>
           <button 
             className={`tab ${activeTab === 'examples' ? 'active' : ''}`}
-            onClick={() => setActiveTab('examples')}
+            onClick={() => { setActiveTab('examples'); setCurrentExample(0); }}
           >
-            💡 Live Examples
+            🔄 8+ Examples
           </button>
           <button 
-            className={`tab ${activeTab === 'cheatsheet' ? 'active' : ''}`}
-            onClick={() => setActiveTab('cheatsheet')}
+            className={`tab ${activeTab === 'reference' ? 'active' : ''}`}
+            onClick={() => setActiveTab('reference')}
           >
-            🎯 Interview Cheat Sheet
+            🎯 Quick Reference
           </button>
           <button 
-            className={`tab ${activeTab === 'gotchas' ? 'active' : ''}`}
-            onClick={() => setActiveTab('gotchas')}
-          >
-            🚨 Common Gotchas
-          </button>
-          <button 
-            className={`tab ${activeTab === 'battleplan' ? 'active' : ''}`}
-            onClick={() => setActiveTab('battleplan')}
+            className={`tab ${activeTab === 'battle-plan' ? 'active' : ''}`}
+            onClick={() => setActiveTab('battle-plan')}
           >
             ⚡ Battle Plan
+          </button>
+          <button 
+            className={`tab ${activeTab === 'errors' ? 'active' : ''}`}
+            onClick={() => setActiveTab('errors')}
+          >
+            🚨 Common Errors
           </button>
         </div>
 
@@ -330,65 +457,36 @@ const ToggleMastery = ({ initialTab = 'skeleton' }) => {  // Add initialTab prop
           {/* Universal Skeleton Tab */}
           {activeTab === 'skeleton' && (
             <div className="skeleton-section">
-              <h2>🏗️ THE UNIVERSAL TOGGLE SKELETON</h2>
+              <h2>🏗️ UNIVERSAL TOGGLE SKELETON</h2>
               <div className="code-block">
-                <pre><code>{`import React, { useState } from 'react';
-
-function ToggleSkeleton() {
-  // 🎯 STEP 1: CHOOSE YOUR STATE NAME
-  const [isOn, setIsOn] = useState(false);
-  // 💡 Change "isOn" to match your problem
-
-  // 🎯 STEP 2: BUTTON TEXT (Change these)
-  const buttonText = isOn ? 'TURN OFF' : 'TURN ON';
-  const statusText = isOn ? 'ON' : 'OFF';
-  
-  // 🎯 STEP 3: CONTENT TO SHOW/HIDE (Change this)
-  const contentToShow = isOn ? <p>Content is visible!</p> : null;
-
-  return (
-    <div>
-      {/* 🎯 BUTTON - Don't change this structure */}
-      <button onClick={() => setIsOn(!isOn)}>
-        {buttonText}
-      </button>
-      
-      {/* 🎯 STATUS TEXT - Optional */}
-      <p>Status: {statusText}</p>
-      
-      {/* 🎯 CONDITIONAL CONTENT - Change what shows */}
-      {contentToShow}
-    </div>
-  );
-}
-
-export default ToggleSkeleton;`}</code></pre>
+                <pre><code>{toggleExamples[0].code}</code></pre>
               </div>
+              {toggleExamples[0].liveDemo}
               
               <div className="transformation-guide">
                 <h3>🔄 TRANSFORMATION GUIDE</h3>
-                <p><strong>Only change 3 things:</strong></p>
+                <p><strong>Change ONLY these 3 things:</strong></p>
                 <ol>
-                  <li><strong>State variable name</strong> (isOn → isVisible, isDark, etc.)</li>
-                  <li><strong>Button text</strong> (ON/OFF → SHOW/HIDE, DARK/LIGHT, etc.)</li>
+                  <li><strong>State variable name</strong> (isOn → isVisible, isDark, isExpanded, etc.)</li>
+                  <li><strong>Button text</strong> (TURN ON/TURN OFF → SHOW/HIDE, DARK/LIGHT, etc.)</li>
                   <li><strong>Content to show</strong> (What appears when toggled on)</li>
                 </ol>
-                <p><em>The return statement stays exactly the same!</em></p>
+                <p><em>The return structure stays exactly the same!</em></p>
               </div>
             </div>
           )}
 
-          {/* Live Examples Tab */}
+          {/* Examples Tab */}
           {activeTab === 'examples' && (
             <div className="examples-section">
               <div className="example-header">
-                <h3>Example {currentExample + 1}: {examples[currentExample].title}</h3>
+                <h3>Example {currentExample + 1}: {toggleExamples[currentExample].title}</h3>
                 <div className="example-navigation">
                   <button onClick={prevExample} className="btn btn-secondary">
                     ← Previous
                   </button>
                   <span>
-                    {currentExample + 1} / {examples.length}
+                    {currentExample + 1} / {toggleExamples.length}
                   </span>
                   <button onClick={nextExample} className="btn btn-secondary">
                     Next →
@@ -397,136 +495,158 @@ export default ToggleSkeleton;`}</code></pre>
               </div>
               
               <div className="example-description">
-                <p>{examples[currentExample].description}</p>
+                <p>{toggleExamples[currentExample].description}</p>
               </div>
 
               <div className="example-demo">
                 <h4>🎯 Live Demo:</h4>
-                {examples[currentExample].liveDemo}
+                {toggleExamples[currentExample].liveDemo}
               </div>
               
               <div className="code-block">
                 <h4>📝 Code:</h4>
-                <pre><code>{examples[currentExample].code}</code></pre>
+                <pre><code>{toggleExamples[currentExample].code}</code></pre>
               </div>
             </div>
           )}
 
-          {/* Interview Cheat Sheet Tab */}
-          {activeTab === 'cheatsheet' && (
-            <div className="cheatsheet-section">
-              <h2>🎯 INTERVIEW PROBLEM → SOLUTION CHEAT SHEET</h2>
-              <div className="cheatsheet-table">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Problem</th>
-                      <th>State Name</th>
-                      <th>Button Text</th>
-                      <th>Content to Show</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {interviewProblems.map((problem, index) => (
-                      <tr key={index}>
-                        <td><strong>{problem.problem}</strong></td>
-                        <td><code>{problem.stateName}</code></td>
-                        <td><code>{problem.buttonText}</code></td>
-                        <td>{problem.content}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+          {/* Quick Reference Tab */}
+          {activeTab === 'reference' && (
+            <div className="reference-section">
+              <h2>🎯 QUICK REFERENCE GUIDE</h2>
+              <p className="reference-intro">Problem → Solution Matrix</p>
               
-              <div className="quick-reference">
-                <h3>⚡ Quick Reference Formula</h3>
-                <div className="formula-code">
-                  <pre><code>{`// COPY → CHANGE 3 LINES → DONE!
-const [isOn, setIsOn] = useState(false);
-const buttonText = isOn ? 'OFF_TEXT' : 'ON_TEXT';
-const contentToShow = isOn ? <YourContent /> : null;`}</code></pre>
+              <div className="reference-table">
+                <div className="table-header">
+                  <div>Problem</div>
+                  <div>State Name</div>
+                  <div>Button Text</div>
+                  <div>Content to Show</div>
                 </div>
-              </div>
-            </div>
-          )}
-
-          {/* Common Gotchas Tab */}
-          {activeTab === 'gotchas' && (
-            <div className="gotchas-section">
-              <h2>🚨 COMMON INTERVIEW GOTCHAS & FIXES</h2>
-              <div className="gotchas-list">
-                {commonGotchas.map((gotcha, index) => (
-                  <div key={index} className="gotcha-item">
-                    <div className="problem">
-                      <strong>❌ Problem: "{gotcha.problem}"</strong>
-                    </div>
-                    <div className="solutions">
-                      <div className="wrong">
-                        <strong>Wrong:</strong> <code>{gotcha.wrong}</code>
-                      </div>
-                      <div className="right">
-                        <strong>✅ Right:</strong> <code>{gotcha.right}</code>
-                      </div>
-                    </div>
+                {quickReference.map((item, index) => (
+                  <div key={index} className="table-row">
+                    <div><strong>{item.problem}</strong></div>
+                    <div><code>{item.stateName}</code></div>
+                    <div><code>{item.buttonText}</code></div>
+                    <div>{item.content}</div>
                   </div>
                 ))}
+              </div>
+
+              <div className="state-options">
+                <h3>⚡ Choose Your State Name:</h3>
+                <div className="state-grid">
+                  <code>const [isOn, setIsOn] = useState(false);</code>
+                  <code>const [isVisible, setIsVisible] = useState(false);</code>
+                  <code>const [isDark, setIsDark] = useState(false);</code>
+                  <code>const [isExpanded, setIsExpanded] = useState(false);</code>
+                  <code>const [isFavorited, setIsFavorited] = useState(false);</code>
+                  <code>const [isPlaying, setIsPlaying] = useState(false);</code>
+                  <code>const [isOpen, setIsOpen] = useState(false);</code>
+                  <code>const [showPassword, setShowPassword] = useState(false);</code>
+                </div>
               </div>
             </div>
           )}
 
           {/* Battle Plan Tab */}
-          {activeTab === 'battleplan' && (
-            <div className="battleplan-section">
+          {activeTab === 'battle-plan' && (
+            <div className="battle-plan-section">
               <h2>⚡ INTERVIEW BATTLE PLAN</h2>
               
-              <div className="steps">
-                <div className="step">
-                  <h3>🎯 Step 1: Identify the Pattern</h3>
-                  <p>"Is this switching between two states?" → <strong>TOGGLE PATTERN</strong></p>
-                </div>
-                
-                <div className="step">
-                  <h3>🔧 Step 2: Choose Your State Name</h3>
-                  <ul>
-                    <li>ON/OFF → <code>isOn</code></li>
-                    <li>Show/Hide → <code>isVisible</code></li>
-                    <li>Dark/Light → <code>isDark</code></li>
-                    <li>Expand/Collapse → <code>isExpanded</code></li>
-                  </ul>
-                </div>
-                
-                <div className="step">
-                  <h3>📝 Step 3: Copy & Transform Skeleton</h3>
-                  <div className="code-snippet">
-                    <pre><code>{`// COPY SKELETON → CHANGE 3 LINES → DONE!
-const [isOn, setIsOn] = useState(false);
-const buttonText = isOn ? 'OFF_TEXT' : 'ON_TEXT';
-const contentToShow = isOn ? <YourContent /> : null;`}</code></pre>
+              <div className="steps-list">
+                {battlePlan.map((step, index) => (
+                  <div key={index} className="step-item">
+                    <div className="step-number">{step.step}</div>
+                    <div className="step-content">
+                      <h3>{step.title}</h3>
+                      <p>{step.description}</p>
+                    </div>
                   </div>
+                ))}
+              </div>
+
+              <div className="customization-guide">
+                <h3>🎯 Customize for ANY Problem:</h3>
+                <div className="code-snippet">
+                  <pre><code>{`function ComponentName() {
+  const [isThing, setIsThing] = useState(false);
+  
+  const buttonText = isThing ? 'TURN OFF' : 'TURN ON';
+  const contentToShow = isThing ? <p>Content!</p> : null;
+
+  return (
+    <div>
+      <button onClick={() => setIsThing(!isThing)}>
+        {buttonText}
+      </button>
+      {contentToShow}
+    </div>
+  );
+}`}</code></pre>
                 </div>
-                
-                <div className="step">
-                  <h3>✅ Step 4: Test & Submit</h3>
-                  <ul>
-                    <li>Click the button to verify toggle works</li>
-                    <li>Check that text/content changes correctly</li>
-                    <li>Submit working solution</li>
-                  </ul>
+                <p><strong>Change ONLY:</strong> State name, Button text, Content to show</p>
+              </div>
+
+              <div className="pro-tips">
+                <h3>💡 PRO TIPS</h3>
+                <ul>
+                  {proTips.map((tip, index) => (
+                    <li key={index}>{tip}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="checklist">
+                <h3>🏆 TOGGLE PATTERN CHECKLIST</h3>
+                <div className="checklist-items">
+                  {checklist.map((item, index) => (
+                    <label key={index} className="checklist-item">
+                      <input type="checkbox" />
+                      <span>{item}</span>
+                    </label>
+                  ))}
                 </div>
               </div>
 
-              <div className="final-checklist">
-                <h3>🏆 FINAL CHECKLIST BEFORE SUBMITTING</h3>
-                <div className="checklist">
-                  <label><input type="checkbox" /> Component imports React and useState</label>
-                  <label><input type="checkbox" /> State variable is properly declared</label>
-                  <label><input type="checkbox" /> Button has onClick handler</label>
-                  <label><input type="checkbox" /> Button text changes based on state</label>
-                  <label><input type="checkbox" /> Conditional content shows/hides correctly</label>
-                  <label><input type="checkbox" /> No console errors</label>
-                  <label><input type="checkbox" /> Basic functionality works</label>
+              <div className="final-reminder">
+                <h3>🎯 REMEMBER:</h3>
+                <div className="reminder-content">
+                  <p><strong>For ANY toggle problem:</strong></p>
+                  <ol>
+                    <li>Copy the skeleton</li>
+                    <li>Change the state name to match the problem</li>
+                    <li>Change the button text to match the context</li>
+                    <li>Change the content that shows when toggled on</li>
+                    <li>Leave the return structure unchanged</li>
+                  </ol>
+                  <p className="success-message">You now have 8+ toggle variations from one skeleton! 🚀</p>
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* Common Errors Tab */}
+          {activeTab === 'errors' && (
+            <div className="errors-section">
+              <h2>🚨 COMMON ERRORS & FIXES</h2>
+              
+              <div className="errors-list">
+                {commonErrors.map((error, index) => (
+                  <div key={index} className="error-item">
+                    <h3>❌ Error: "{error.error}"</h3>
+                    <div className="error-comparison">
+                      <div className="error-wrong">
+                        <h4>Wrong:</h4>
+                        <pre><code>{error.wrong}</code></pre>
+                      </div>
+                      <div className="error-right">
+                        <h4>✅ Right:</h4>
+                        <pre><code>{error.right}</code></pre>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           )}

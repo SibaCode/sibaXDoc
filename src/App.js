@@ -2,15 +2,29 @@
 import React, { useState } from 'react';
 import StudyGuide from './components/StudyGuide';
 import ToggleMastery from './components/ToggleMastery';
+import CounterListMastery from './components/CounterListMastery';
+import HtmlElementsMastery from './components/HtmlElementsMastery';
 import './App.css';
 
 function App() {
   const [activeTab, setActiveTab] = useState('study');
-  const [lmsTab, setLmsTab] = useState('skeleton'); // Track which LMS tab to show
+  const [lmsTab, setLmsTab] = useState('skeleton');
+  const [counterTab, setCounterTab] = useState('counter-skeleton');
+  const [htmlTab, setHtmlTab] = useState('skeleton');
 
   const handleNavigateToLMS = (tab = 'skeleton') => {
     setLmsTab(tab);
     setActiveTab('lms');
+  };
+
+  const handleNavigateToCounter = (tab = 'counter-skeleton') => {
+    setCounterTab(tab);
+    setActiveTab('counter');
+  };
+
+  const handleNavigateToHtml = (tab = 'skeleton') => {
+    setHtmlTab(tab);
+    setActiveTab('html');
   };
 
   const handleNavigateToStudy = () => {
@@ -33,7 +47,19 @@ function App() {
               className={`nav-link ${activeTab === 'lms' ? 'active' : ''}`}
               onClick={() => setActiveTab('lms')}
             >
-              🚀 React Mastery
+              🚀 Toggle Mastery
+            </button>
+            <button 
+              className={`nav-link ${activeTab === 'counter' ? 'active' : ''}`}
+              onClick={() => setActiveTab('counter')}
+            >
+              🔢 Counter & List
+            </button>
+            <button 
+              className={`nav-link ${activeTab === 'html' ? 'active' : ''}`}
+              onClick={() => setActiveTab('html')}
+            >
+              🏗️ HTML Elements
             </button>
           </div>
         </div>
@@ -41,10 +67,20 @@ function App() {
 
       <main className="main-content">
         {activeTab === 'study' && (
-          <StudyGuide onNavigateToLMS={handleNavigateToLMS} />
+          <StudyGuide 
+            onNavigateToLMS={handleNavigateToLMS} 
+            onNavigateToCounter={handleNavigateToCounter}
+            onNavigateToHtml={handleNavigateToHtml}
+          />
         )}
         {activeTab === 'lms' && (
           <ToggleMastery initialTab={lmsTab} />
+        )}
+        {activeTab === 'counter' && (
+          <CounterListMastery initialTab={counterTab} />
+        )}
+        {activeTab === 'html' && (
+          <HtmlElementsMastery initialTab={htmlTab} />
         )}
       </main>
     </div>

@@ -102,7 +102,58 @@ const StudyGuide = ({ onNavigateToLMS }) => {
       priority: "HIGH",
       relatedTo: "toggle-mastery",
       lmsTab: "gotchas"
-    }
+    },
+    // Add to the knowledgeBase array in StudyGuide.js
+{
+  topic: "React Counter Patterns",
+  keywords: ["counter", "increment", "decrement", "count", "votes", "quantity", "score", "points"],
+  chapters: ["Chapter 7: Counter Patterns"],
+  sections: ["7.1: Universal Counter Skeleton", "7.2: Counter Transformations", "7.3: Common Use Cases"],
+  examples: ["VoteCounter", "CartQuantity", "ScoreKeeper", "LapCounter"],
+  quickTips: [
+    "Use useState(0) for counter state",
+    "Create increment/decrement functions",
+    "Add limits when necessary (min/max)",
+    "Display current count dynamically"
+  ],
+  priority: "HIGH",
+  relatedTo: "counter-mastery",
+  lmsTab: "counter-skeleton"
+},
+{
+  topic: "React List Patterns", 
+  keywords: ["list", "array", "add", "remove", "todo", "items", "management"],
+  chapters: ["Chapter 8: List Patterns"],
+  sections: ["8.1: Universal List Skeleton", "8.2: List Transformations", "8.3: CRUD Operations"],
+  examples: ["TodoList", "ShoppingList", "GuestList"],
+  quickTips: [
+    "Use useState([]) for list state",
+    "Always use unique keys for list items",
+    "Use spread operator to add items",
+    "Use filter to remove items"
+  ],
+  priority: "HIGH",
+  relatedTo: "counter-mastery", 
+  lmsTab: "list-skeleton"
+},
+// Add to the knowledgeBase array in StudyGuide.js
+{
+  topic: "HTML Elements Mastery",
+  keywords: ["html", "elements", "jsx", "syntax", "div", "button", "input", "list", "heading", "paragraph"],
+  chapters: ["Chapter 1: HTML Elements Basics", "Chapter 2: JSX Syntax Rules"],
+  sections: ["1.1: Basic HTML Elements", "1.2: Interactive Elements", "2.1: JSX vs HTML", "2.2: Common JSX Errors"],
+  examples: ["PortfolioPage", "ContactForm", "Navigation", "ProductCard"],
+  quickTips: [
+    "Always wrap in single parent element",
+    "Use self-closing tags with /",
+    "Use className instead of class",
+    "Use htmlFor instead of for",
+    "No state needed for basic HTML challenges"
+  ],
+  priority: "HIGH",
+  relatedTo: "html-mastery",
+  lmsTab: "skeleton"
+}
   ];
 
   const findRelevantTopics = (searchKeywords) => {
