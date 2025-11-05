@@ -1,0 +1,392 @@
+/* src/components/LMSViewer.css */
+.lms-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.lms-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.lms-header h1 {
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.lms-header h2 {
+  color: #475569;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+/* Tabs Navigation */
+.lms-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 1rem;
+}
+
+.tab {
+  padding: 12px 24px;
+  border: none;
+  background: #f8fafc;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #64748b;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.tab:hover {
+  background: #e2e8f0;
+  color: #374151;
+}
+
+.tab.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+/* Tab Content */
+.tab-content {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Code Blocks */
+.code-block {
+  background: #1e293b;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+
+.code-block pre {
+  margin: 0;
+  color: #e2e8f0;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.code-block code {
+  color: #e2e8f0;
+}
+
+/* Skeleton Section */
+.skeleton-section h3 {
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.skeleton-explanation {
+  background: #f0f9ff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #3b82f6;
+  margin-top: 1.5rem;
+}
+
+.skeleton-explanation h4 {
+  color: #0369a1;
+  margin-bottom: 1rem;
+}
+
+.skeleton-explanation ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.skeleton-explanation li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: #475569;
+}
+
+.skeleton-explanation li:before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: bold;
+}
+
+/* Examples Section */
+.examples-section h3 {
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.example-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.example-navigation {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.example-navigation span {
+  font-weight: 500;
+  color: #64748b;
+}
+
+.explanation {
+  background: #f0fdf4;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #10b981;
+  margin: 1.5rem 0;
+}
+
+.explanation h4 {
+  color: #065f46;
+  margin-bottom: 0.5rem;
+}
+
+.practice-questions {
+  background: #fffbeb;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #f59e0b;
+}
+
+.practice-questions h4 {
+  color: #92400e;
+  margin-bottom: 1rem;
+}
+
+.practice-questions ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.practice-questions li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: #475569;
+}
+
+.practice-questions li:before {
+  content: '💭';
+  position: absolute;
+  left: 0;
+}
+
+/* Questions Section */
+.questions-section h3 {
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+}
+
+.qa-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.qa-item {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #8b5cf6;
+}
+
+.question {
+  color: #1e293b;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.answer {
+  color: #475569;
+  line-height: 1.6;
+}
+
+.self-test {
+  background: #fef7ff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #a855f7;
+}
+
+.self-test h4 {
+  color: #7c3aed;
+  margin-bottom: 1rem;
+}
+
+.self-test ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.self-test li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: #475569;
+}
+
+.self-test li:before {
+  content: '🧪';
+  position: absolute;
+  left: 0;
+}
+
+/* Steps Section */
+.steps-section h3 {
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+}
+
+.steps-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 2rem;
+}
+
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #3b82f6;
+}
+
+.step-number {
+  background: #3b82f6;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.step-content {
+  color: #475569;
+  line-height: 1.6;
+}
+
+.implementation-tips h4 {
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.tip {
+  background: #f0f9ff;
+  padding: 1.25rem;
+  border-radius: 8px;
+  border: 1px solid #e0f2fe;
+}
+
+.tip strong {
+  color: #0369a1;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.tip p {
+  color: #475569;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .lms-container {
+    padding: 15px;
+  }
+  
+  .lms-tabs {
+    flex-direction: column;
+  }
+  
+  .tab {
+    text-align: center;
+  }
+  
+  .example-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .example-navigation {
+    justify-content: space-between;
+  }
+  
+  .tab-content {
+    padding: 1.5rem;
+  }
+  
+  .code-block {
+    padding: 1rem;
+  }
+  
+  .code-block pre {
+    font-size: 12px;
+  }
+  
+  .tips-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .step-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lms-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .lms-header h2 {
+    font-size: 1.1rem;
+  }
+  
+  .tab-content {
+    padding: 1rem;
+  }
+  
+  .code-block {
+    padding: 0.75rem;
+  }
+}
