@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import StudyGuide from './components/StudyGuide';
 import ToggleMastery from './components/ToggleMastery';
+import CounterMastery from './components/CounterMastery';
 import CounterListMastery from './components/CounterListMastery';
 import HtmlElementsMastery from './components/HtmlElementsMastery';
 import './App.css';
@@ -10,6 +11,7 @@ function App() {
   const [activeTab, setActiveTab] = useState('study');
   const [lmsTab, setLmsTab] = useState('skeleton');
   const [counterTab, setCounterTab] = useState('counter-skeleton');
+  const [counterListTab, setCounterListTab] = useState('skeleton');
   const [htmlTab, setHtmlTab] = useState('skeleton');
 
   const handleNavigateToLMS = (tab = 'skeleton') => {
@@ -20,6 +22,11 @@ function App() {
   const handleNavigateToCounter = (tab = 'counter-skeleton') => {
     setCounterTab(tab);
     setActiveTab('counter');
+  };
+
+  const handleNavigateToCounterList = (tab = 'skeleton') => {
+    setCounterListTab(tab);
+    setActiveTab('counter-list');
   };
 
   const handleNavigateToHtml = (tab = 'skeleton') => {
@@ -53,7 +60,13 @@ function App() {
               className={`nav-link ${activeTab === 'counter' ? 'active' : ''}`}
               onClick={() => setActiveTab('counter')}
             >
-              🔢 Counter & List
+              🔢 Counter Mastery
+            </button>
+            <button 
+              className={`nav-link ${activeTab === 'counter-list' ? 'active' : ''}`}
+              onClick={() => setActiveTab('counter-list')}
+            >
+              📋 Counter & List
             </button>
             <button 
               className={`nav-link ${activeTab === 'html' ? 'active' : ''}`}
@@ -70,6 +83,7 @@ function App() {
           <StudyGuide 
             onNavigateToLMS={handleNavigateToLMS} 
             onNavigateToCounter={handleNavigateToCounter}
+            onNavigateToCounterList={handleNavigateToCounterList}
             onNavigateToHtml={handleNavigateToHtml}
           />
         )}
@@ -77,7 +91,10 @@ function App() {
           <ToggleMastery initialTab={lmsTab} />
         )}
         {activeTab === 'counter' && (
-          <CounterListMastery initialTab={counterTab} />
+          <CounterMastery initialTab={counterTab} />
+        )}
+        {activeTab === 'counter-list' && (
+          <CounterListMastery initialTab={counterListTab} />
         )}
         {activeTab === 'html' && (
           <HtmlElementsMastery initialTab={htmlTab} />
