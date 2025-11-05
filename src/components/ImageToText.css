@@ -1,0 +1,120 @@
+/* Add to src/components/ImageToText.css */
+
+.text-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.text-result textarea {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #f8fafc;
+  resize: vertical;
+  min-height: 150px;
+}
+
+.text-result textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: white;
+}
+
+/* Success state for copy button */
+.btn-success {
+  background: #10b981;
+}
+
+.btn-success:hover {
+  background: #059669;
+}
+
+/* Loading state improvements */
+.loading {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.progress-bar {
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  height: 8px;
+  transition: width 0.3s ease;
+}
+
+/* Tips section improvements */
+.tips {
+  background: #f0f9ff;
+  border-left: 4px solid #3b82f6;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+}
+
+.tips h4 {
+  color: #0369a1;
+  margin-bottom: 1rem;
+}
+
+.tips ul {
+  list-style: none;
+  padding: 0;
+}
+
+.tips li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: #475569;
+}
+
+.tips li:before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #3b82f6;
+  font-weight: bold;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .text-actions {
+    grid-template-columns: 1fr;
+  }
+  
+  .text-result textarea {
+    font-size: 16px; /* Better for mobile */
+  }
+  
+  .tips {
+    padding: 1rem;
+  }
+  
+  .tips li {
+    padding-left: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-actions {
+    gap: 8px;
+  }
+  
+  .btn {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+}
