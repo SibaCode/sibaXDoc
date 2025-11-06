@@ -1,0 +1,301 @@
+/* src/components/LiveInputMastery.css */
+
+.live-input-mastery-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+.mastery-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.mastery-header h1 {
+  margin: 0 0 10px 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.mastery-header p {
+  margin: 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* Live Input Demo Styles */
+.live-input-demo {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 10px;
+  margin: 25px 0;
+  border: 2px solid #e9ecef;
+}
+
+.live-input-demo h3 {
+  margin-top: 0;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Textarea Styles */
+.live-textarea {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  font-family: inherit;
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.live-textarea:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.live-textarea.error {
+  border-color: #dc3545;
+}
+
+.live-textarea.warning {
+  border-color: #ffc107;
+}
+
+/* Live Preview */
+.live-preview {
+  margin-top: 20px;
+  padding: 20px;
+  background: white;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+}
+
+.live-preview h4 {
+  margin-top: 0;
+  color: #495057;
+}
+
+/* Character Count */
+.character-count {
+  margin-top: 15px;
+  padding: 10px;
+  background: #e9ecef;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+/* Twitter Counter */
+.character-counter {
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.character-counter.success {
+  color: #28a745;
+  background: #d4edda;
+}
+
+.character-counter.warning {
+  color: #856404;
+  background: #fff3cd;
+}
+
+.character-counter.error {
+  color: #721c24;
+  background: #f8d7da;
+}
+
+/* Signature Generator */
+.signature-generator {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.inputs-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.signature-input {
+  padding: 12px;
+  border: 2px solid #6c757d;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.signature-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.preview-column h4 {
+  margin-top: 0;
+  color: #495057;
+}
+
+.signature-preview {
+  padding: 25px;
+  border: 2px dashed #6c757d;
+  background: white;
+  font-family: Arial, sans-serif;
+  border-radius: 8px;
+}
+
+.signature-name {
+  font-weight: bold;
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: #2c3e50;
+}
+
+.signature-title {
+  color: #666;
+  margin: 0 0 8px 0;
+  font-style: italic;
+}
+
+.signature-email {
+  color: #007bff;
+  margin: 0 0 8px 0;
+}
+
+.signature-phone {
+  color: #28a745;
+  margin: 0;
+}
+
+/* Bio Generator */
+.bio-textarea {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  border: 2px solid #6f42c1;
+  border-radius: 8px;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
+
+.bio-textarea:focus {
+  outline: none;
+  border-color: #5a2d9c;
+}
+
+.bio-preview {
+  margin-top: 20px;
+  padding: 25px;
+  background: #f8f9fa;
+  border: 2px solid #6f42c1;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.bio-preview h4 {
+  color: #6f42c1;
+  margin-bottom: 15px;
+}
+
+.bio-content {
+  font-size: 16px;
+  line-height: 1.6;
+  font-style: italic;
+  margin: 0;
+}
+
+.bio-stats {
+  margin-top: 15px;
+  padding: 12px;
+  background: #e9ecef;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Blog Title Generator */
+.title-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.title-input {
+  padding: 12px;
+  border: 2px solid #dee2e6;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.title-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.title-suggestion {
+  padding: 15px;
+  margin-bottom: 10px;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.title-suggestion:hover {
+  background: #e9ecef;
+  transform: translateX(5px);
+}
+
+/* Success Message */
+.success-message {
+  background: #d5f4e6;
+  padding: 25px;
+  border-radius: 10px;
+  margin: 30px 0;
+  border: 2px solid #27ae60;
+  text-align: center;
+}
+
+.success-message h3 {
+  margin-top: 0;
+  color: #27ae60;
+}
+
+.success-message p {
+  margin: 10px 0;
+  color: #2c3e50;
+  font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .signature-generator {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .title-inputs {
+    gap: 10px;
+  }
+  
+  .live-textarea {
+    padding: 12px;
+  }
+}
+
+/* Use existing styles from previous components for tabs, code blocks, etc. */
